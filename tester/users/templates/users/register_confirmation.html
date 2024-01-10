@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section>
+        <div class="mt-6 mb-5">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12 col-md-8 col-lg-4">
+                            <div class="card card-bg">
+                                <div class="card-body p-5">
+                                    <form action="{% url 'register' %}"
+                                          method="POST"
+                                          class="form-floating mb-3">
+                                        {% csrf_token %}
+                                        <div class="mb-3 mt-md-4">
+                                            <div class="text-center">
+                                                <a class="navbar-brand" href=""><span class="text-primary fs-3 ms-2 fw-bolder">Blog</span><span class="fw-bold text-300 fs-3">it!</span></a>
+                                            </div>
+                                            <p class="mb-5 text-center">Вы успешно создали аккаунт!</p>
+                                            <p class="mb-5 text-center">Ниже указаны ваши данные для входа. Подтвердите их.</p>
+                                            <p class="mb-5 text-center">Логин: {{username}}<br>Пароль: {{password}}</p>
+                                            <div>
+                                                <p class="mb-0  text-center">
+                                                    <a href="{% url 'home' %}" class="text-primary fw-bold">Подтвердить</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

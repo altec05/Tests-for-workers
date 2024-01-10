@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section>
+        <main class="mt-5 mb-5">
+            <div class="container">
+                <div class="main-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card p-3 card-soft-primary">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column align-items-center text-center">
+                                        <div class="mt-1">
+                                            <div class="text-center">
+                                                <div class="col-12 d-grid">
+                                                    <div class="fs-0 fw-normal mb-3 text-600">
+                                                        <p class="h2">"{{ user.username }}"</p>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-grid">
+                                                    <a class="btn btn-danger rounded-pill my-2"
+                                                       href="{% url 'edit_profile' %}">Редактировать профиль</a>
+                                                </div>
+                                                <div class="col-12 d-grid">
+                                                    <a class="btn btn-danger rounded-pill my-2"
+                                                       href="{% url 'password_change' %}">Сменить пароль</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card p-3 h-100 card-soft-primary">
+                                <div class="profile-card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h6 class="fw-bold fs-1 text-200 my-3">Мои данные</h6>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <h6 class="fw-bold fs-0 mb-0 text-600">Логин:</h6>
+                                        </div>
+                                        <div class="col-sm-8 fs-0 fw-normal mb-0 text-600">
+                                            <p>{{ user.username }}</p>
+                                        </div>
+                                    </div>
+                                    {% if user.is_staff %}
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <h6 class="fw-bold fs-0 mb-0 text-600">Роль пользователя:</h6>
+                                        </div>
+                                        <div class="col-sm-8 fs-0 fw-normal mb-0 text-600">
+                                            <p>Менеджер сайта</p>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    {%endif%}
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <h6 class="fw-bold fs-0 mb-0 text-600">Фамилия:</h6>
+                                        </div>
+                                        <div class="col-sm-8 fs-0 fw-normal mb-0 text-600">
+                                            <p>{{ user.last_name }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <h6 class="fw-bold fs-0 mb-0 text-600">Имя:</h6>
+                                        </div>
+                                        <div class="col-sm-8 fs-0 fw-normal mb-0 text-600">
+                                            <p>{{ user.first_name }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <h6 class="fw-bold fs-0 mb-0 text-600">Отчество:</h6>
+                                        </div>
+                                        <div class="col-sm-8 fs-0 fw-normal mb-0 text-600">
+                                            <p>{{ user.patronymic }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <h6 class="fw-bold fs-0 mb-0 text-600">Должность:</h6>
+                                        </div>
+                                        <div class="col-sm-8 fs-0 fw-normal mb-0 text-600">
+                                            <p>{{ user.job }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <h6 class="fw-bold fs-0 mb-0 text-600">Отдел:</h6>
+                                        </div>
+                                        <div class="col-sm-8 fs-0 fw-normal mb-0 text-600">
+                                            <p>{{ user.department }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <h6 class="fw-bold fs-0 mb-0 text-600">Последний вход:</h6>
+                                        </div>
+                                        <div class="col-sm-8 fs-0 fw-normal mb-0 text-600">
+                                            <p>{{ user.last_login }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <h6 class="fw-bold fs-0 mb-0 text-600">Аккаунт зарегистрирован:</h6>
+                                        </div>
+                                        <div class="col-sm-8 fs-0 fw-normal mb-0 text-600">
+                                            <p>{{ user.created_at }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+{% endblock %}

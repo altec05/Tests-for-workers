@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<style></style>
+<section>
+    <div class="mt-5 mb-5">
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <div class="card card-bg">
+                            <div class="card-body p-5">
+                                <form class="form"
+                                      method="POST"
+                                      action="{% url 'edit_profile' %}"
+                                      enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="mb-3 mt-md-4">
+                                        <p class="mb-5 text-center"><span>Здравствуйте, </span><span class="fw-bolder">{{user.last_name}} {{user.first_name}} {{user.patronymic}}</span></p>
+                                        {% for field in form %}
+                                        <div class="form-floating mb-3">
+                                            {% if field.name != 'year_of_birth'%}
+                                            <input type="text" class="form-control" placeholder="{{ field.label }}" name="{{ field.name }}" value="{{ field.value }}">
+                                            <label for="{{field.name}}">{{ field.label }}</label>
+                                            {% else %}
+                                            <input type="number" min="{{from_year}}" max="{{now}}" class="form-control" placeholder="{{ field.label }}" name="{{ field.name }}" value="{{ field.value }}">
+                                            <label for="{{field.name}}">{{ field.label }}</label>
+                                            {% endif %}
+                                        </div>
+                                        {% endfor %}
+                                        {% for error in field.errors %}<p style="color: red;">{{ error }}</p>{% endfor %}
+                                        <div class="col-12 d-grid">
+                                            <button class="btn btn-danger rounded-pill mt-3" type="submit">Сохранить изменения</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
